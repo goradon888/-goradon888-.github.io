@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฉันรักคุณ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #ffe4e1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+            margin: 100px auto;
+        }
+
+        h1 {
+            color: #ff69b4;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        .heart {
+            font-size: 5rem;
+            color: #ff69b4;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            color: #ff69b4;
+            opacity: 0.7;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-500px) rotate(360deg);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ฉันรักคุณ!</h1>
+        <p>ความรักของฉันที่มีให้คุณคือ...</p>
+        <div class="heart">❤️</div>
+        <p id="love-message"></p>
+        <button onclick="showLove()">คลิกเพื่อรับข้อความรัก</button>
+    </div>
+
+    <!-- หัวใจลอยไปลอยมา -->
+    <script>
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000); // ลบหัวใจเมื่อมันลอยออกไปจากหน้าจอ
+        }
+
+        setInterval(createFloatingHeart, 1000); // สร้างหัวใจใหม่ทุก 1 วินาที
+
+        function showLove() {
+            const messages = [
+                "คุณคือสิ่งที่ดีที่สุดในชีวิตฉัน",
+                "ฉันรักคุณมากกว่าสิ่งใด",
+                "โลกของฉันสมบูรณ์เมื่อมีคุณ",
+                "คุณคือหัวใจของฉัน"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            document.getElementById('love-message').innerText = randomMessage;
+        }
+    </script>
+</body>
+</html>
